@@ -11,5 +11,25 @@
 		var now = new Date();
 		document.write("<p>" + now.toLocaleString() + "</p>");
 	</script>
+	<p>Now: <span id="txtNow"></span></p>
+	<script type="text/javascript">
+		function showTime() {
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("txtNow").innerHTML = xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET", "/now");
+			xmlhttp.send();
+		}
+		showTime();
+		setInterval("showTime()", 1000);
+	</script>
 </body>
 </html>

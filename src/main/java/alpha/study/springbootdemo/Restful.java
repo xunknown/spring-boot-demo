@@ -14,6 +14,6 @@ public class Restful {
 
     @GetMapping("/now")
     public String now() {
-        return new Date().toString();
+    	return new Date().toString();
     }
 }
